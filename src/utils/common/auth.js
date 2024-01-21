@@ -14,9 +14,18 @@ function checkPassword(plainPassword, encryptedPassword){
 
 function createToken(input){
     try {
-        return jwt.sign(input,ServerConfig.JWT_SECRET_KEY,{expiresIn: ServerConfig.JWT_EXPIRY});
-        
+        return jwt.sign(input,ServerConfig.JWT_SECRET_KEY,{expiresIn: ServerConfig.JWT_EXPIRY});       
     } catch (error) {
+        throw error;       
+    }
+}
+
+
+function verifyToken(token){
+    try {
+        return jwt.verify(token,ServerConfig.JWT_SECRET_KEY) 
+    } catch (error) {
+        console.log(error);
         throw error;
         
     }
@@ -25,5 +34,6 @@ function createToken(input){
 
 module.exports={
     checkPassword,
-    createToken
+    createToken,
+    verifyToken
 }
