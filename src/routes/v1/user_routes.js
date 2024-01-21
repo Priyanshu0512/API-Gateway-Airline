@@ -1,15 +1,15 @@
 const express = require('express')
-const {UserMiddlewares} =require('../../middlewares')
+const {AuthMiddlewares} =require('../../middlewares')
 const {UserController}= require('../../controllers')
 
 const router = express.Router();
 
-router.post('/signup',
-                  UserMiddlewares.validateCreateRequest,
+router.post('/signUp',
+                  AuthMiddlewares.validateAuthRequest,
                   UserController.createUser
 );
-router.post('/signin',
-                  UserMiddlewares.validateCreateRequest,
+router.post('/signIn',
+                  AuthMiddlewares.validateAuthRequest,
                   UserController.signIn
 );
 module.exports = router;
