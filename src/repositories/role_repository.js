@@ -6,7 +6,7 @@ class RoleRepository extends CrudRepository{
         super(Role)
     }
 
-    async geRoleByName(name){
+    async getRoleByName(name){
         const role = await Role.findOne({
             where:{
                 name: name
